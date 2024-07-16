@@ -1,0 +1,39 @@
+package Datastructures;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Alphabets {
+    public static void main(String[] args) {
+        String s = "Hello world this is a test";
+        String ds = Alphabets(s);
+        System.out.println(ds);
+    }
+
+    public static String Alphabets(String s) {
+        // Split the s into words
+        String[] words = s.split(" ");
+        
+        //  the characters in each word
+        List<String> dWords = Arrays.stream(words)
+                                           .map(Alphabets::String)
+                                           .collect(Collectors.toList());
+        
+        // Join the d words back into a s
+        return String.join(" ", dWords);
+    }
+
+    private static String String(String word) {
+        List<Character> characters = word.chars()
+                                         .mapToObj(c -> (char) c)
+                                         .collect(Collectors.toList());
+        Collections.(characters);
+        StringBuilder dWord = new StringBuilder(characters.size());
+        for (char c : characters) {
+            dWord.append(c);
+        }
+        return dWord.toString();
+    }
+}

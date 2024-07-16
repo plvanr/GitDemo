@@ -1,0 +1,39 @@
+package Datastructures;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ReverseAlphabets {
+    public static void main(String[] args) {
+        String s = "Hello world this is a test";
+        String reverseds = reverseAlphabets(s);
+        System.out.println(reverseds);
+    }
+
+    public static String reverseAlphabets(String s) {
+        // Split the s into words
+        String[] words = s.split(" ");
+        
+        // Reverse the characters in each word
+        List<String> reversedWords = Arrays.stream(words)
+                                           .map(ReverseAlphabets::reverseString)
+                                           .collect(Collectors.toList());
+        
+        // Join the reversed words back into a s
+        return String.join(" ", reversedWords);
+    }
+
+    private static String reverseString(String word) {
+        List<Character> characters = word.chars()
+                                         .mapToObj(c -> (char) c)
+                                         .collect(Collectors.toList());
+        Collections.reverse(characters);
+        StringBuilder reversedWord = new StringBuilder(characters.size());
+        for (char c : characters) {
+            reversedWord.append(c);
+        }
+        return reversedWord.toString();
+    }
+}
